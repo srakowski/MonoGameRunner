@@ -2,5 +2,5 @@
 	path = PixelVision/PixelVisionSDK
 	url = https://github.com/PixelVision8/SDK.git
 [submodule "PixelVisionRunner"]
-	path = PixelVisionRunner
+	path = PixelVision/PixelVisionRunner
 	url = https://github.com/srakowski/Runner.git
