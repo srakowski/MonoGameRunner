@@ -1,0 +1,6 @@
+[submodule "PixelVisionSDK"]
+	path = PixelVision/PixelVisionSDK
+	url = https://github.com/PixelVision8/SDK.git
+[submodule "PixelVisionRunner"]
+	path = PixelVisionRunner
+	url = https://github.com/srakowski/Runner.git
