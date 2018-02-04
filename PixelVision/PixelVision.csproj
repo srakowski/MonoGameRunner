@@ -52,6 +52,7 @@
     <Compile Include="PixelVisionRunner\Chips\SfxrSoundChip.cs" />
     <Compile Include="PixelVisionRunner\IColorFactory.cs" />
     <Compile Include="PixelVisionRunner\IDisplayTarget.cs" />
+    <Compile Include="PixelVisionRunner\IInputFactory.cs" />
     <Compile Include="PixelVisionRunner\ITextureFactory.cs" />
     <Compile Include="PixelVisionRunner\Services\FileSystem.cs" />
     <Compile Include="PixelVisionRunner\Services\IFileSystem.cs" />

@@ -15,28 +15,33 @@
 
 using PixelVisionSDK;
 using PixelVisionSDK.Chips;
+using Keys = Microsoft.Xna.Framework.Input.Keys;
 
-/// <summary>
-///     This class helps capture keyboard input and needs to be registered with the ControllerChip.
-/// </summary>
-/// <example>
-///     controllerChip.UpdateControllerKey(0, new KeyboardButtonInput(Button.A, 120);
-/// </example>
-public class KeyboardButtonInput : ButtonState
+namespace MonoGameRunner.Input
 {
-    protected int keyCode;
 
-    public KeyboardButtonInput(Buttons buttons, int keyCode)
+    /// <summary>
+    ///     This class helps capture keyboard input and needs to be registered with the ControllerChip.
+    /// </summary>
+    /// <example>
+    ///     controllerChip.UpdateControllerKey(0, new KeyboardButtonInput(Button.A, 120);
+    /// </example>
+    public class KeyboardButtonInput : ButtonState
     {
-        this.buttons = buttons;
-        mapping = keyCode;
-        this.keyCode = keyCode;
-    }
+        protected int keyCode;
 
-    public override void Update(float timeDelta)
-    {
-        value = false; // TODO: fix
-        base.Update(timeDelta);
-    }
+        public KeyboardButtonInput(Buttons buttons, int keyCode)
+        {
+            this.buttons = buttons;
+            mapping = keyCode;
+            this.keyCode = keyCode;
+        }
 
+        public override void Update(float timeDelta)
+        {
+            value = InputStates.CurrKeyboardState.IsKeyDown((Keys)keyCode);
+            base.Update(timeDelta);
+        }
+
+    }
 }

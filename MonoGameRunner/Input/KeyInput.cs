@@ -14,28 +14,33 @@
 // Shawn Rakowski - @shwany
 
 using PixelVisionSDK;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework;
+using Keys = Microsoft.Xna.Framework.Input.Keys;
 
-public class KeyInput : IKeyInput
+namespace MonoGameRunner.Input
 {
-
-    public bool GetKey(int key)
+    public class KeyInput : IKeyInput
     {
-        return false;//Input.GetKey((KeyCode) key);
-    }
+        public bool GetKey(int key)
+        {
+            return InputStates.CurrKeyboardState.IsKeyDown((Keys)key) &&
+                InputStates.PrevKeyboardState.IsKeyUp((Keys)key);
+        }
 
-    public bool GetKeyDown(int key)
-    {
-        return false;//Input.GetKeyDown((KeyCode) key);
-    }
+        public bool GetKeyDown(int key)
+        {
+            return InputStates.CurrKeyboardState.IsKeyDown((Keys)key);
+        }
 
-    public bool GetKeyUp(int key)
-    {
-        return false;//Input.GetKeyUp((KeyCode) key);
-    }
+        public bool GetKeyUp(int key)
+        {
+            return InputStates.CurrKeyboardState.IsKeyUp((Keys)key);
+        }
 
-    public string ReadInputString()
-    {
-        return string.Empty;//Input.inputString;
+        public string ReadInputString()
+        {
+            return InputStates.TextInput;
+        }
     }
-
 }

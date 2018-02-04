@@ -46,6 +46,8 @@
     <Compile Include="ColorAdapter.cs" />
     <Compile Include="ColorFactory.cs" />
     <Compile Include="DisplayTarget.cs" />
+    <Compile Include="InputFactory.cs" />
+    <Compile Include="Input\InputStates.cs" />
     <Compile Include="Input\KeyboardButtonInput.cs" />
     <Compile Include="Input\KeyInput.cs" />
     <Compile Include="Input\MouseInput.cs" />

@@ -13,22 +13,22 @@ namespace MonoGameRunner
 
         private SpriteBatch spriteBatch;
 
-        private ViewportAdapter viewportAdapter;
+        public ViewportAdapter ViewportAdapter { get; private set; }
 
         public DisplayTarget(GameWindow window, GraphicsDeviceManager graphics)
         {
             this.graphics = graphics;
             this.spriteBatch = new SpriteBatch(graphics.GraphicsDevice);
-            this.viewportAdapter = new ViewportAdapter(window, graphics.GraphicsDevice, 256, 240);
+            this.ViewportAdapter = new ViewportAdapter(window, graphics.GraphicsDevice, 256, 240);
         }
 
         public void ResetResolution(int width, int height, bool fullScreen)
         {
             renderTexture = new Texture2D(graphics.GraphicsDevice, width, height);
 
-            viewportAdapter.VirtualWidth = width;
-            viewportAdapter.VirtualHeight = height;
-            viewportAdapter.Reset();
+            ViewportAdapter.VirtualWidth = width;
+            ViewportAdapter.VirtualHeight = height;
+            ViewportAdapter.Reset();
 
             graphics.IsFullScreen = fullScreen;
             graphics.ApplyChanges();
@@ -50,7 +50,7 @@ namespace MonoGameRunner
         {
             renderTexture.SetData(pixels.Select(p => new Color(p.r, p.g, p.b)).ToArray());
 
-            spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: viewportAdapter.GetScaleMatrix());
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: ViewportAdapter.GetScaleMatrix());
             spriteBatch.Draw(renderTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.FlipVertically, 1f);
             spriteBatch.End();
         }
