@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>8f3c0ad1-7ca3-45d7-a2e2-ecb3b268f885</ProjectGuid>
+    <ProjectGuid>{8F3C0AD1-7CA3-45D7-A2E2-ECB3B268F885}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PixelVision</RootNamespace>
@@ -30,20 +30,64 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="MoonSharp.Interpreter, Version=2.0.0.0, Culture=neutral, PublicKeyToken=921e73ce94aa17f8, processorArchitecture=MSIL">
+      <HintPath>..\packages\MoonSharp.2.0.0.0\lib\net35-client\MoonSharp.Interpreter.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ZipStorer, Version=3.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZipStorer.3.4.0\lib\net20\ZipStorer.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include=".\PixelVisionSDK\**\*.cs">
+    </Compile>
+    <Compile Include="PixelVisionRunner\Chips\ILuaGameChipAPI.cs" />
+    <Compile Include="PixelVisionRunner\Chips\LuaGameChip.cs" />
+    <Compile Include="PixelVisionRunner\Chips\SfxrMusicChip.cs" />
+    <Compile Include="PixelVisionRunner\Chips\SfxrSoundChip.cs" />
+    <Compile Include="PixelVisionRunner\IColorFactory.cs" />
+    <Compile Include="PixelVisionRunner\IDisplayTarget.cs" />
+    <Compile Include="PixelVisionRunner\ITextureFactory.cs" />
+    <Compile Include="PixelVisionRunner\Services\FileSystem.cs" />
+    <Compile Include="PixelVisionRunner\Services\IFileSystem.cs" />
+    <Compile Include="PixelVisionRunner\Services\LoadService.cs" />
+    <Compile Include="PixelVisionRunner\Services\LuaService.cs" />
+    <Compile Include="PixelVisionRunner\Services\SaveFlags.cs" />
+    <Compile Include="PixelVisionRunner\Utils\SimplePromise.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PixelVisionRunner\IColor.cs" />
+    <Compile Include="PixelVisionRunner\IColor32.cs" />
+    <Compile Include=".\PixelVisionRunner\Data\ILoad.cs" />
+    <Compile Include=".\PixelVisionRunner\Data\ISave.cs" />
+    <Compile Include=".\PixelVisionRunner\Data\SfxrSongData.cs" />
+    <Compile Include=".\PixelVisionRunner\Data\SfxrSoundData.cs" />
+    <Compile Include=".\PixelVisionRunner\Data\SfxrTrackData.cs" />
+    <Compile Include=".\PixelVisionRunner\Parsers\AbstractParser.cs" />
+    <Compile Include=".\PixelVisionRunner\Parsers\ColorMapParser.cs" />
+    <Compile Include=".\PixelVisionRunner\Parsers\ColorParser.cs" />
+    <Compile Include=".\PixelVisionRunner\Parsers\FontParser.cs" />
+    <Compile Include=".\PixelVisionRunner\Parsers\JsonParser.cs" />
+    <Compile Include=".\PixelVisionRunner\Parsers\MetaDataParser.cs" />
+    <Compile Include=".\PixelVisionRunner\Parsers\ScriptParser.cs" />
+    <Compile Include=".\PixelVisionRunner\Parsers\SpriteParser.cs" />
+    <Compile Include=".\PixelVisionRunner\Parsers\SystemParser.cs" />
+    <Compile Include=".\PixelVisionRunner\Parsers\TilemapJsonParser.cs" />
+    <Compile Include=".\PixelVisionRunner\Parsers\TilemapParser.cs" />
+    <Compile Include=".\PixelVisionRunner\Runner.cs" />
+    <Compile Include="PixelVisionRunner\ITexture2D.cs" />
+    <Compile Include=".\PixelVisionRunner\Utils\ImportUtil.cs" />
+    <Compile Include=".\PixelVisionRunner\Utils\JsonUtil.cs" />
+    <Compile Include=".\PixelVisionRunner\Utils\MiniJSON.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>
