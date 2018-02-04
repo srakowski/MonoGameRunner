@@ -14,29 +14,28 @@
 // Shawn Rakowski - @shwany
 
 using PixelVisionSDK;
-using UnityEngine;
 
 public class KeyInput : IKeyInput
 {
 
     public bool GetKey(int key)
     {
-        return Input.GetKey((KeyCode) key);
+        return false;//Input.GetKey((KeyCode) key);
     }
 
     public bool GetKeyDown(int key)
     {
-        return Input.GetKeyDown((KeyCode) key);
+        return false;//Input.GetKeyDown((KeyCode) key);
     }
 
     public bool GetKeyUp(int key)
     {
-        return Input.GetKeyUp((KeyCode) key);
+        return false;//Input.GetKeyUp((KeyCode) key);
     }
 
     public string ReadInputString()
     {
-        return Input.inputString;
+        return string.Empty;//Input.inputString;
     }
 
 }
