@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using PixelVisionRunner;
 using System;
 using MonoGameRunner.Input;
+using MonoGameRunner.Data;
+using MonoGameRunner.Runners;
 
 namespace MonoGameRunner
 {
@@ -11,10 +13,10 @@ namespace MonoGameRunner
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private Runner runner;
+        private EngineReference engineRef;
+        private RunnerWrapper runner;
         private DisplayTarget displayTarget;
         private ITextureFactory textureFactory;
-        private IColorFactory colorFactory;
         private InputFactory inputFactory;
 
         public RunnerGame()
@@ -30,13 +32,13 @@ namespace MonoGameRunner
         {
             base.Initialize();
 
-            displayTarget = new DisplayTarget(Window, graphics);
+            engineRef = new EngineReference();
+            displayTarget = new DisplayTarget(engineRef, Window, graphics);
             textureFactory = new TextureFactory(this.GraphicsDevice);
-            colorFactory = new ColorFactory();
             spriteBatch = new SpriteBatch(GraphicsDevice);
             inputFactory = new InputFactory(displayTarget);
 
-            runner = new Runner(OpenPV8File, displayTarget, textureFactory, colorFactory, inputFactory);
+            runner = new RunnerWrapper(engineRef, OpenPV8File, displayTarget, textureFactory, inputFactory);
 
             runner.Initialize();
         }
@@ -55,10 +57,10 @@ namespace MonoGameRunner
 
         private void OpenPV8File(Action<Stream> resolve)
         {
-            //resolve(File.OpenRead("./Content/SpriteStressDemo.pv8"));
+            // resolve(File.OpenRead("./Content/SpriteStressDemo.pv8"));
             // resolve(File.OpenRead("./Content/UIFrameworkDemo.pv8"));
-            // resolve(File.OpenRead("./Content/SampleLuaGame.pv8"));
-            resolve(File.OpenRead("./Content/MicroPlatformer.pv8"));
+            resolve(File.OpenRead("./Content/SampleLuaGame.pv8"));
+            //resolve(File.OpenRead("./Content/MicroPlatformer.pv8"));
         }
     }
 }

@@ -4,8 +4,9 @@ using PixelVisionRunner;
 using System;
 using System.IO;
 using System.Linq;
+using PixelVisionSDK;
 
-namespace MonoGameRunner
+namespace MonoGameRunner.Data
 {
     class Texture2DAdapter : ITexture2D
     {
@@ -40,13 +41,6 @@ namespace MonoGameRunner
             var data = new Color[width * height];
             texture.GetData(0, new Rectangle(x, y, width, height), data, 0, data.Length);
             return data.Select(c => new ColorAdapter(c) as IColor).ToArray();
-        }
-
-        public IColor32[] GetPixels32()
-        {
-            var data = new Color[texture.Width * texture.Height];
-            texture.GetData(data);
-            return data.Select(c => new ColorAdapter32(c) as IColor32).ToArray();
         }
 
         public void LoadImage(byte[] data)
@@ -98,6 +92,26 @@ namespace MonoGameRunner
                 }
             }
             return newData;
+        }
+
+        public void SetPixels(IColor[] colorData)
+        {
+            throw new NotImplementedException();
+        }
+
+        public byte[] EncodeToPNG()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LoadTextureData(TextureData textureData, ColorData[] colors, string transColor = "#ff00ff")
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Apply()
+        {
+            throw new NotImplementedException();
         }
     }
 }

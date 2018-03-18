@@ -16,7 +16,7 @@
 using PixelVisionSDK;
 using Microsoft.Xna.Framework.Input;
 using ButtonState = Microsoft.Xna.Framework.Input.ButtonState;
-using MonoGameRunner.Input;
+using MonoGameRunner.Data;
 
 namespace MonoGameRunner.Input
 {

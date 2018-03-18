@@ -1,11 +1,12 @@
-﻿using MonoGameRunner.Input;
+﻿using MonoGameRunner.Data;
+using MonoGameRunner.Input;
 using PixelVisionRunner;
 using PixelVisionSDK;
 using PixelVisionSDK.Chips;
 using System.Collections.Generic;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 
-namespace MonoGameRunner
+namespace MonoGameRunner.Input
 {
     class InputFactory : IInputFactory
     {

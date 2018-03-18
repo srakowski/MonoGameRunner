@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using PixelVisionRunner;
-using System;
 
-namespace MonoGameRunner
+namespace MonoGameRunner.Data
 {
     struct ColorAdapter : IColor
     {

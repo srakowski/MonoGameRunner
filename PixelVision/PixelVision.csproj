@@ -46,45 +46,11 @@
   <ItemGroup>
     <Compile Include=".\PixelVisionSDK\**\*.cs">
     </Compile>
-    <Compile Include="PixelVisionRunner\Chips\ILuaGameChipAPI.cs" />
-    <Compile Include="PixelVisionRunner\Chips\LuaGameChip.cs" />
-    <Compile Include="PixelVisionRunner\Chips\SfxrMusicChip.cs" />
-    <Compile Include="PixelVisionRunner\Chips\SfxrSoundChip.cs" />
-    <Compile Include="PixelVisionRunner\IColorFactory.cs" />
-    <Compile Include="PixelVisionRunner\IDisplayTarget.cs" />
-    <Compile Include="PixelVisionRunner\IInputFactory.cs" />
-    <Compile Include="PixelVisionRunner\ITextureFactory.cs" />
-    <Compile Include="PixelVisionRunner\Services\FileSystem.cs" />
-    <Compile Include="PixelVisionRunner\Services\IFileSystem.cs" />
-    <Compile Include="PixelVisionRunner\Services\LoadService.cs" />
-    <Compile Include="PixelVisionRunner\Services\LuaService.cs" />
-    <Compile Include="PixelVisionRunner\Services\SaveFlags.cs" />
-    <Compile Include="PixelVisionRunner\Utils\SimplePromise.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="PixelVisionRunner\IColor.cs" />
-    <Compile Include="PixelVisionRunner\IColor32.cs" />
-    <Compile Include=".\PixelVisionRunner\Data\ILoad.cs" />
-    <Compile Include=".\PixelVisionRunner\Data\ISave.cs" />
-    <Compile Include=".\PixelVisionRunner\Data\SfxrSongData.cs" />
-    <Compile Include=".\PixelVisionRunner\Data\SfxrSoundData.cs" />
-    <Compile Include=".\PixelVisionRunner\Data\SfxrTrackData.cs" />
-    <Compile Include=".\PixelVisionRunner\Parsers\AbstractParser.cs" />
-    <Compile Include=".\PixelVisionRunner\Parsers\ColorMapParser.cs" />
-    <Compile Include=".\PixelVisionRunner\Parsers\ColorParser.cs" />
-    <Compile Include=".\PixelVisionRunner\Parsers\FontParser.cs" />
-    <Compile Include=".\PixelVisionRunner\Parsers\JsonParser.cs" />
-    <Compile Include=".\PixelVisionRunner\Parsers\MetaDataParser.cs" />
-    <Compile Include=".\PixelVisionRunner\Parsers\ScriptParser.cs" />
-    <Compile Include=".\PixelVisionRunner\Parsers\SpriteParser.cs" />
-    <Compile Include=".\PixelVisionRunner\Parsers\SystemParser.cs" />
-    <Compile Include=".\PixelVisionRunner\Parsers\TilemapJsonParser.cs" />
-    <Compile Include=".\PixelVisionRunner\Parsers\TilemapParser.cs" />
-    <Compile Include=".\PixelVisionRunner\Runner.cs" />
-    <Compile Include="PixelVisionRunner\ITexture2D.cs" />
-    <Compile Include=".\PixelVisionRunner\Utils\ImportUtil.cs" />
-    <Compile Include=".\PixelVisionRunner\Utils\JsonUtil.cs" />
-    <Compile Include=".\PixelVisionRunner\Utils\MiniJSON.cs" />
+    <Compile Include="Chips\ILuaGameChipAPI.cs" />
+    <Compile Include="Chips\LuaGameChip.cs" />
+    <Compile Include="Chips\SfxrSoundChip.cs" />
+    <Compile Include="Data\SfxrSoundData.cs" />
+    <Compile Include="Services\LuaService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
