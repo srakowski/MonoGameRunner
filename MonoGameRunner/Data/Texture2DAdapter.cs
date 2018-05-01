@@ -4,8 +4,9 @@ using PixelVisionRunner;
 using System;
 using System.IO;
 using System.Linq;
+using PixelVisionSDK;
 
-namespace MonoGameRunner
+namespace MonoGameRunner.Data
 {
     class Texture2DAdapter : ITexture2D
     {
@@ -18,7 +19,6 @@ namespace MonoGameRunner
         public Texture2DAdapter(Texture2D texture)
         {
             this.texture = texture;
-            FlipTexture();
         }
 
         public IColor GetPixel(int x, int y)
@@ -42,13 +42,6 @@ namespace MonoGameRunner
             return data.Select(c => new ColorAdapter(c) as IColor).ToArray();
         }
 
-        public IColor32[] GetPixels32()
-        {
-            var data = new Color[texture.Width * texture.Height];
-            texture.GetData(data);
-            return data.Select(c => new ColorAdapter32(c) as IColor32).ToArray();
-        }
-
         public void LoadImage(byte[] data)
         {
             var graphicsDevice = texture.GraphicsDevice;
@@ -56,7 +49,7 @@ namespace MonoGameRunner
             using (var stream = new MemoryStream(data))
             {
                 texture = Texture2D.FromStream(graphicsDevice, stream);
-                FlipTexture();
+                //FlipTexture();
             }
         }
 
@@ -75,29 +68,24 @@ namespace MonoGameRunner
             throw new NotImplementedException();
         }
 
-        private void FlipTexture()
+        public void SetPixels(IColor[] colorData)
         {
-            var data = new Color[texture.Width * texture.Height];
-            texture.GetData(data);
-            data = FlipY(data, texture.Width, texture.Height);
-            texture.SetData(data);
+            throw new NotImplementedException();
         }
 
-        private static Color[] FlipY(Color[] data, int width, int height)
+        public byte[] EncodeToPNG()
         {
-            var newData = new Color[data.Length];
-            int i = 0;
-            for (int y = height - 1; y >= 0; y--)
-            {
-                var x0 = y * width;
-                var xLength = (y * width) + width;
-                for (int x = x0; x < xLength; x++)
-                {
-                    newData[i] = data[x];
-                    i++;
-                }
-            }
-            return newData;
+            throw new NotImplementedException();
+        }
+
+        public void LoadTextureData(TextureData textureData, ColorData[] colors, string transColor = "#ff00ff")
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Apply()
+        {
+            throw new NotImplementedException();
         }
     }
 }

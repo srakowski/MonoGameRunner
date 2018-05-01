@@ -42,11 +42,13 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Color32Adapter.cs" />
-    <Compile Include="ColorAdapter.cs" />
-    <Compile Include="ColorFactory.cs" />
-    <Compile Include="DisplayTarget.cs" />
-    <Compile Include="InputFactory.cs" />
+    <Compile Include="Audio\AudioPlayer.cs" />
+    <Compile Include="Audio\AudioPlayerFactory.cs" />
+    <Compile Include="Data\ColorAdapter.cs" />
+    <Compile Include="Data\DisplayTarget.cs" />
+    <Compile Include="Data\Texture2DAdapter.cs" />
+    <Compile Include="Data\TextureFactory.cs" />
+    <Compile Include="Input\InputFactory.cs" />
     <Compile Include="Input\InputStates.cs" />
     <Compile Include="Input\KeyboardButtonInput.cs" />
     <Compile Include="Input\KeyInput.cs" />
@@ -54,16 +56,22 @@
     <Compile Include="RunnerGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Texture2DAdapter.cs" />
-    <Compile Include="TextureFactory.cs" />
-    <Compile Include="ViewportAdapter.cs" />
+    <Compile Include="Runners\EngineReference.cs" />
+    <Compile Include="Runners\RunnerWrapper.cs" />
+    <Compile Include="Util\ViewportAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="MoonSharp.Interpreter, Version=2.0.0.0, Culture=neutral, PublicKeyToken=921e73ce94aa17f8, processorArchitecture=MSIL">
+      <HintPath>..\packages\MoonSharp.2.0.0.0\lib\net40-client\MoonSharp.Interpreter.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
+    <Reference Include="ZipStorer, Version=3.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZipStorer.3.4.0\lib\net20\ZipStorer.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
@@ -116,10 +124,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.manifest" />
-    <Content Include="Content\SampleLuaGame.pv8">
+    <Content Include="Content\MicroPlatformer.pv8">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\MicroPlatformer.pv8">
+    <Content Include="Content\DrawSpritesDemo.pv8">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\NesSpriteDemo.pv8">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MusicDemo.pv8">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Content\SpriteStressDemo.pv8">
@@ -128,6 +142,7 @@
     <None Include="Content\UIFrameworkDemo.pv8">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PixelVision\PixelVision.csproj">

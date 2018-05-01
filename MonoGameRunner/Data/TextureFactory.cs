@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using PixelVisionRunner;
 
-namespace MonoGameRunner
+namespace MonoGameRunner.Data
 {
     class TextureFactory : ITextureFactory
     {
@@ -11,6 +11,8 @@ namespace MonoGameRunner
         {
             this.graphicsDevice = graphicsDevice;
         }
+
+        public bool flip { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
         public ITexture2D NewTexture2D(int width, int height)
         {

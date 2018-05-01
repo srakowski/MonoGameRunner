@@ -29,7 +29,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace MonoGameRunner
+namespace MonoGameRunner.Util
 {
     public enum BoxingMode
     {

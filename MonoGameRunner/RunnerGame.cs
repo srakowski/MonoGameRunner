@@ -1,9 +1,10 @@
-﻿using System.IO;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using PixelVisionRunner;
-using System;
+using MonoGameRunner.Data;
 using MonoGameRunner.Input;
+using MonoGameRunner.Runners;
+using PixelVisionRunner;
+using PixelVisionRunner.Chips.Sfxr;
 
 namespace MonoGameRunner
 {
@@ -11,10 +12,10 @@ namespace MonoGameRunner
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private Runner runner;
+        private EngineReference engineRef;
+        private RunnerWrapper runner;
         private DisplayTarget displayTarget;
         private ITextureFactory textureFactory;
-        private IColorFactory colorFactory;
         private InputFactory inputFactory;
 
         public RunnerGame()
@@ -28,17 +29,24 @@ namespace MonoGameRunner
 
         protected override void Initialize()
         {
+            SfxrSynth.AudioPlayerFactory = new Audio.AudioPlayerFactory();
+
             base.Initialize();
 
-            displayTarget = new DisplayTarget(Window, graphics);
+            engineRef = new EngineReference();
+            displayTarget = new DisplayTarget(engineRef, Window, graphics);
             textureFactory = new TextureFactory(this.GraphicsDevice);
-            colorFactory = new ColorFactory();
             spriteBatch = new SpriteBatch(GraphicsDevice);
             inputFactory = new InputFactory(displayTarget);
 
-            runner = new Runner(OpenPV8File, displayTarget, textureFactory, colorFactory, inputFactory);
+            runner = new RunnerWrapper("./Content/MusicDemo.pv8", engineRef, displayTarget, textureFactory, inputFactory);
 
             runner.Initialize();
+
+            // forces viewport adapter to refresh position/scaling
+            graphics.PreferredBackBufferWidth = graphics.PreferredBackBufferWidth;
+            graphics.PreferredBackBufferHeight = graphics.PreferredBackBufferHeight;
+            graphics.ApplyChanges();
         }
 
         protected override void Update(GameTime gameTime)
@@ -51,14 +59,6 @@ namespace MonoGameRunner
         {
             GraphicsDevice.Clear(Color.Black);
             runner.Draw();
-        }
-
-        private void OpenPV8File(Action<Stream> resolve)
-        {
-            //resolve(File.OpenRead("./Content/SpriteStressDemo.pv8"));
-            // resolve(File.OpenRead("./Content/UIFrameworkDemo.pv8"));
-            // resolve(File.OpenRead("./Content/SampleLuaGame.pv8"));
-            resolve(File.OpenRead("./Content/MicroPlatformer.pv8"));
         }
     }
 }
