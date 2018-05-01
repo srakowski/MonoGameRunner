@@ -19,7 +19,6 @@ namespace MonoGameRunner.Data
         public Texture2DAdapter(Texture2D texture)
         {
             this.texture = texture;
-            FlipTexture();
         }
 
         public IColor GetPixel(int x, int y)
@@ -50,7 +49,7 @@ namespace MonoGameRunner.Data
             using (var stream = new MemoryStream(data))
             {
                 texture = Texture2D.FromStream(graphicsDevice, stream);
-                FlipTexture();
+                //FlipTexture();
             }
         }
 
@@ -67,31 +66,6 @@ namespace MonoGameRunner.Data
         public void SetPixels(int x, int y, int width, int height, IColor[] pixelData)
         {
             throw new NotImplementedException();
-        }
-
-        private void FlipTexture()
-        {
-            var data = new Color[texture.Width * texture.Height];
-            texture.GetData(data);
-            data = FlipY(data, texture.Width, texture.Height);
-            texture.SetData(data);
-        }
-
-        private static Color[] FlipY(Color[] data, int width, int height)
-        {
-            var newData = new Color[data.Length];
-            int i = 0;
-            for (int y = height - 1; y >= 0; y--)
-            {
-                var x0 = y * width;
-                var xLength = (y * width) + width;
-                for (int x = x0; x < xLength; x++)
-                {
-                    newData[i] = data[x];
-                    i++;
-                }
-            }
-            return newData;
         }
 
         public void SetPixels(IColor[] colorData)

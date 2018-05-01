@@ -1,11 +1,10 @@
-﻿using System.IO;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using PixelVisionRunner;
-using System;
-using MonoGameRunner.Input;
 using MonoGameRunner.Data;
+using MonoGameRunner.Input;
 using MonoGameRunner.Runners;
+using PixelVisionRunner;
+using PixelVisionRunner.Chips.Sfxr;
 
 namespace MonoGameRunner
 {
@@ -30,6 +29,8 @@ namespace MonoGameRunner
 
         protected override void Initialize()
         {
+            SfxrSynth.AudioPlayerFactory = new Audio.AudioPlayerFactory();
+
             base.Initialize();
 
             engineRef = new EngineReference();
@@ -38,9 +39,14 @@ namespace MonoGameRunner
             spriteBatch = new SpriteBatch(GraphicsDevice);
             inputFactory = new InputFactory(displayTarget);
 
-            runner = new RunnerWrapper(engineRef, OpenPV8File, displayTarget, textureFactory, inputFactory);
+            runner = new RunnerWrapper("./Content/MusicDemo.pv8", engineRef, displayTarget, textureFactory, inputFactory);
 
             runner.Initialize();
+
+            // forces viewport adapter to refresh position/scaling
+            graphics.PreferredBackBufferWidth = graphics.PreferredBackBufferWidth;
+            graphics.PreferredBackBufferHeight = graphics.PreferredBackBufferHeight;
+            graphics.ApplyChanges();
         }
 
         protected override void Update(GameTime gameTime)
@@ -53,14 +59,6 @@ namespace MonoGameRunner
         {
             GraphicsDevice.Clear(Color.Black);
             runner.Draw();
-        }
-
-        private void OpenPV8File(Action<Stream> resolve)
-        {
-            // resolve(File.OpenRead("./Content/SpriteStressDemo.pv8"));
-            // resolve(File.OpenRead("./Content/UIFrameworkDemo.pv8"));
-            resolve(File.OpenRead("./Content/SampleLuaGame.pv8"));
-            //resolve(File.OpenRead("./Content/MicroPlatformer.pv8"));
         }
     }
 }

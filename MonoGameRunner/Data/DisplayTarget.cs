@@ -29,6 +29,7 @@ namespace MonoGameRunner.Data
 
         public void ResetResolution(int width, int height)
         {
+            if (renderTexture != null) renderTexture.Dispose();
             renderTexture = new Texture2D(graphics.GraphicsDevice, width, height);
             ViewportAdapter.VirtualWidth = width;
             ViewportAdapter.VirtualHeight = height;
@@ -67,7 +68,7 @@ namespace MonoGameRunner.Data
         {
             renderTexture.SetData(pixels);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: ViewportAdapter.GetScaleMatrix());
-            spriteBatch.Draw(renderTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.FlipVertically, 1f);
+            spriteBatch.Draw(renderTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
             spriteBatch.End();
         }
     }

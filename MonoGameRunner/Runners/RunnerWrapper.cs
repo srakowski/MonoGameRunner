@@ -13,24 +13,23 @@
 // Pedro Medeiros - @saint11
 // Shawn Rakowski - @shwany
 
+using PixelVisionRunner;
+using PixelVisionRunner.Chips;
+using PixelVisionRunner.Services;
 using PixelVisionSDK;
 using PixelVisionSDK.Chips;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using PixelVisionRunner.Utils;
-using PixelVisionRunner;
-using PixelVisionRunner.Services;
 using System.IO.Compression;
-using PixelVisionRunner.Chips;
+using System.Linq;
 
 namespace MonoGameRunner.Runners
 {
     public class RunnerWrapper
     {
-        private EngineReference engineRef;
+        private string filePath;
 
-        private SimplePromise<Stream> openPv8;
+        private EngineReference engineRef;
 
         private IDisplayTarget displayTarget;
 
@@ -39,14 +38,14 @@ namespace MonoGameRunner.Runners
         private Runner runner;
 
         public RunnerWrapper(
+            string filePath,
             EngineReference engineRef,
-            SimplePromise<Stream> openPv8,
             IDisplayTarget displayTarget,
             ITextureFactory textureFactory,
             IInputFactory inputFactory)
         {
+            this.filePath = filePath;
             this.engineRef = engineRef;
-            this.openPv8 = openPv8;
             this.displayTarget = displayTarget;
             this.inputFactory = inputFactory;
             this.runner = new Runner(textureFactory);
@@ -64,6 +63,8 @@ namespace MonoGameRunner.Runners
                 typeof(DisplayChip).FullName,
                 typeof(ControllerChip).FullName,
                 typeof(LuaGameChip).FullName,
+                typeof(MusicChip).FullName,
+                typeof(SfxrSoundChip).FullName,
             };
 
             if (addOnChips != null)
@@ -71,10 +72,8 @@ namespace MonoGameRunner.Runners
 
             engineRef.Engine = new PixelVisionEngine(displayTarget, inputFactory, chips);
             engineRef.Engine.chipManager.AddService(typeof(LuaService).FullName, new LuaService());
-
-            openPv8
-                .Then(LoadGame)
-                .Execute();
+            LoadGame();
+            runner.ActivateEngine(engineRef.Engine);
         }
 
         public void Update(float delta)
@@ -87,10 +86,12 @@ namespace MonoGameRunner.Runners
             runner.Draw();
         }
 
-        private Unit LoadGame(Stream gameContent)
+        private void LoadGame()
         {
-            runner.ProcessFiles(engineRef.Engine, ExtractZipFromMemoryStream(gameContent));
-            return Unit.Value;
+            using (var file = File.OpenRead(filePath))
+            {
+                runner.ProcessFiles(engineRef.Engine, ExtractZipFromMemoryStream(file));
+            }
         }
 
         private static Dictionary<string, byte[]> ExtractZipFromMemoryStream(Stream stream)

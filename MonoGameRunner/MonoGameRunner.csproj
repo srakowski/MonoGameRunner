@@ -42,6 +42,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Audio\AudioPlayer.cs" />
+    <Compile Include="Audio\AudioPlayerFactory.cs" />
     <Compile Include="Data\ColorAdapter.cs" />
     <Compile Include="Data\DisplayTarget.cs" />
     <Compile Include="Data\Texture2DAdapter.cs" />
@@ -122,10 +124,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.manifest" />
-    <Content Include="Content\SampleLuaGame.pv8">
+    <Content Include="Content\MicroPlatformer.pv8">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\MicroPlatformer.pv8">
+    <Content Include="Content\DrawSpritesDemo.pv8">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\NesSpriteDemo.pv8">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MusicDemo.pv8">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Content\SpriteStressDemo.pv8">

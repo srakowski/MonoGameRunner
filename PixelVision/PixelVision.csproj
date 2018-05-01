@@ -49,8 +49,14 @@
     <Compile Include="Chips\ILuaGameChipAPI.cs" />
     <Compile Include="Chips\LuaGameChip.cs" />
     <Compile Include="Chips\SfxrSoundChip.cs" />
+    <Compile Include="Chips\Sfxr\IAudioPlayerFactory.cs" />
+    <Compile Include="Chips\Sfxr\IAudioPlayer.cs" />
+    <Compile Include="Chips\Sfxr\ISfxrSynth.cs" />
+    <Compile Include="Chips\Sfxr\Mathf.cs" />
+    <Compile Include="Chips\Sfxr\SfxrParams.cs" />
     <Compile Include="Data\SfxrSoundData.cs" />
     <Compile Include="Services\LuaService.cs" />
+    <Compile Include="Chips\Sfxr\SfxrSynth.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

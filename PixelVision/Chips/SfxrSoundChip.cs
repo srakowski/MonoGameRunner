@@ -46,7 +46,7 @@ namespace PixelVisionRunner.Chips
             if (synth != null)
             {
                 synth.CacheSound();
-                //synth.parameters.SetSettingsString(param);
+                synth.UpdateSettings(param);
             }
         }
         
