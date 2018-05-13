@@ -48,6 +48,7 @@
     <Compile Include="Data\DisplayTarget.cs" />
     <Compile Include="Data\Texture2DAdapter.cs" />
     <Compile Include="Data\TextureFactory.cs" />
+    <Compile Include="Input\GamePadButtonInput.cs" />
     <Compile Include="Input\InputFactory.cs" />
     <Compile Include="Input\InputStates.cs" />
     <Compile Include="Input\KeyboardButtonInput.cs" />

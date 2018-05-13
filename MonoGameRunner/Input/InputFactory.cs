@@ -45,7 +45,9 @@ namespace MonoGameRunner.Input
 
         public ButtonState CreateButtonBinding(int playerIdx, Buttons button)
         {
-            return new KeyboardButtonInput(button, (int)keyBindings[playerIdx][button]);
+            // I think this would be enough to switch over?
+            return new GamePadButtonInput(button);
+            //return new KeyboardButtonInput(button, (int)keyBindings[playerIdx][button]);
         }
 
         public IKeyInput CreateKeyInput()

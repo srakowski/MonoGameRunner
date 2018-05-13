@@ -39,7 +39,7 @@ namespace MonoGameRunner
             spriteBatch = new SpriteBatch(GraphicsDevice);
             inputFactory = new InputFactory(displayTarget);
 
-            runner = new RunnerWrapper("./Content/NesSpriteDemo.pv8", engineRef, displayTarget, textureFactory, inputFactory);
+            runner = new RunnerWrapper("./Content/MicroPlatformer.pv8", engineRef, displayTarget, textureFactory, inputFactory);
 
             runner.Initialize();
 

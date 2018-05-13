@@ -23,6 +23,9 @@ namespace MonoGameRunner.Input
         public static KeyboardState PrevKeyboardState { get; private set; }
         public static KeyboardState CurrKeyboardState { get; private set; }
 
+        public static GamePadState PrevGamePadState { get; private set; }
+        public static GamePadState CurrGamePadState { get; private set; }
+
         public static void Update()
         {
             PrevMouseState = CurrMouseState;
@@ -30,6 +33,9 @@ namespace MonoGameRunner.Input
 
             PrevKeyboardState = CurrKeyboardState;
             CurrKeyboardState = Keyboard.GetState();
+
+            PrevGamePadState = CurrGamePadState;
+            CurrGamePadState = GamePad.GetState(PlayerIndex.One);
         }
 
         public static void InputStates_TextInput(object sender, TextInputEventArgs e)
